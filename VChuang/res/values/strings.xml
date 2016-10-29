@@ -3,5 +3,6 @@
 
     <string name="app_name">VChuang</string>
     <string name="hello_world">Hello world!</string>
+    <string name="load_more_text">正在加载...</string>
 
 </resources>
