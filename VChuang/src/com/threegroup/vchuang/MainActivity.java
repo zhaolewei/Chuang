@@ -7,17 +7,16 @@ import com.zlw.mymodel.adapter.MainViewPagerAdapter;
 import com.zlw.mymodel.ui.fragment.ListFragment;
 import com.zlw.mymodel.ui.fragment.TestFragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
 	// 控件
 	private TabLayout tabLayout;
@@ -37,8 +36,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 	protected void initData() {
 		List<Fragment> fragments = new ArrayList<Fragment>();
 		fragments.add(new ListFragment());
-		fragments.add(new TestFragment());
-		fragments.add(new TestFragment());
+		fragments.add(new TestFragment("1"));
+		fragments.add(new TestFragment("2"));
+		fragments.add(new TestFragment("3"));
+		fragments.add(new TestFragment("4"));
 		vp.setAdapter(new MainViewPagerAdapter(getSupportFragmentManager(), fragments));
 
 		tabLayout.setupWithViewPager(vp);
@@ -49,6 +50,8 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 		for (int i = 0; i < fragments.size(); i++) {
 			TabLayout.Tab tab = tabLayout.getTabAt(i);
 			tab.setCustomView(R.layout.item_main_tab); // 设置Tab
+			TextView tv = (TextView) tab.getCustomView().findViewById(R.id.item_main_tab_text);
+			tv.setText("界面"+i);
 			// 提取ImageView
 			ImageView img = (ImageView) tab.getCustomView().findViewById(R.id.tab_icon);
 			imageViews.add(img);
