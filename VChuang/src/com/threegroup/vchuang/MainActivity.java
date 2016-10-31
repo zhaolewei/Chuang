@@ -3,6 +3,11 @@ package com.threegroup.vchuang;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.threegroup.vchuang.ourfragment.DiscoverFragment;
+import com.threegroup.vchuang.ourfragment.EventCenterFragment;
+import com.threegroup.vchuang.ourfragment.MeFragment;
+import com.threegroup.vchuang.ourfragment.MessageFragment;
+import com.threegroup.vchuang.ourfragment.VQuanFragment;
 import com.zlw.mymodel.adapter.MainViewPagerAdapter;
 import com.zlw.mymodel.ui.fragment.ListFragment;
 import com.zlw.mymodel.ui.fragment.TestFragment;
@@ -23,11 +28,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 	private ViewPager vp;
 	// 全局数据集
 	private List<ImageView> imageViews; // Tab中的Imageview集（用于修改透明度达到变色效果）
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		initView();
 		initData();
 		bindEvent();
@@ -35,15 +42,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 	protected void initData() {
 		List<Fragment> fragments = new ArrayList<Fragment>();
-		fragments.add(new ListFragment());
-		fragments.add(new TestFragment("1"));
-		fragments.add(new TestFragment("2"));
-		fragments.add(new TestFragment("3"));
-		fragments.add(new TestFragment("4"));
+		fragments.add(new VQuanFragment());
+		fragments.add(new DiscoverFragment());
+		fragments.add(new EventCenterFragment());
+		fragments.add(new MessageFragment());
+		fragments.add(new MeFragment());
 		vp.setAdapter(new MainViewPagerAdapter(getSupportFragmentManager(), fragments));
 
 		tabLayout.setupWithViewPager(vp);
 
+		String[] tabData = new String[]{"V圈","发现","事务中心","消息","我"}; 
+		
 		Log.i("zlw", "123initData===========");
 		// 设置TabLayout中的Tab样式
 		imageViews = new ArrayList<ImageView>();
@@ -51,7 +60,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 			TabLayout.Tab tab = tabLayout.getTabAt(i);
 			tab.setCustomView(R.layout.item_main_tab); // 设置Tab
 			TextView tv = (TextView) tab.getCustomView().findViewById(R.id.item_main_tab_text);
-			tv.setText("界面"+i);
+			tv.setText(tabData[i]);
+			tv.setTextSize(10f);
 			// 提取ImageView
 			ImageView img = (ImageView) tab.getCustomView().findViewById(R.id.tab_icon);
 			imageViews.add(img);
