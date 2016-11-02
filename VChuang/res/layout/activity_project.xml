@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:id="@+id/ll_first_floor" 
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:background="#00A4E8">
+
+        <RelativeLayout
+            android:id="@+id/rl_first_floor_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+             >
+			<ImageButton 
+			    android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/back"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="项目库"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_first_floor_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+
+            <EditText
+                android:id="@+id/et_search_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_search_discover"
+                android:drawablePadding="10dp"
+                android:background="@drawable/shape_circle_rectangle"
+                android:layout_centerInParent="true"
+                android:hint="项目名称、领域"
+                android:textColorHint="#b7b7b7"
+                android:textSize="15sp"
+                >
+                <requestFocus />
+            </EditText>
+            
+
+            
+        </RelativeLayout>
+        
+	<TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="全部项目" 
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lv_project" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_first_floor"></ListView>
+
+</RelativeLayout>
