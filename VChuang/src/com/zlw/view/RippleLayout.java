@@ -16,11 +16,11 @@ import java.util.ArrayList;
 /**
  * 水波纹控件布局
  * 
- * @author zlw
+ * @author zlw 739043667@qq.com
  */
 public class RippleLayout extends RelativeLayout {
 
-	private Paint mPaint;
+	private Paint mPaint; // 用户绘制波纹的画笔
 	private int clickedViewWidth;
 	private int clickedViewHeight;
 
