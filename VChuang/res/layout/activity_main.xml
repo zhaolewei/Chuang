@@ -14,7 +14,6 @@
         android:id="@+id/main_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/gray" 
-        />
+        app:tabIndicatorColor="@color/gray" />
 
 </LinearLayout>

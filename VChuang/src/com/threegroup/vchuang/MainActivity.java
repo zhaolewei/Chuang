@@ -28,13 +28,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 	private ViewPager vp;
 	// 全局数据集
 	private List<ImageView> imageViews; // Tab中的Imageview集（用于修改透明度达到变色效果）
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		initView();
 		initData();
 		bindEvent();
@@ -51,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 		tabLayout.setupWithViewPager(vp);
 
-		String[] tabData = new String[]{"V圈","发现","事务中心","消息","我"}; 
-		
+		String[] tabData = new String[] { "V圈", "发现", "事务中心", "消息", "我" };
+
 		Log.i("zlw", "123initData===========");
 		// 设置TabLayout中的Tab样式
 		imageViews = new ArrayList<ImageView>();
