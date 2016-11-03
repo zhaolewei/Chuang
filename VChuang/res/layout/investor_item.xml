@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
 
     <com.jyy.view.ImageViewForUrl
-        android:id="@+id/img_logo_project_item"
+        android:id="@+id/img_icon_investor_item"
         android:layout_width="68dp"
         android:layout_height="68dp"
         android:layout_gravity="center"
@@ -19,24 +19,24 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:id="@+id/tv_title_project_item"
+            android:id="@+id/tv_name_investor_item"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="16sp" 
-            android:text="童漫秀"/>
+            android:text="汪涵"/>
 
         <TextView
-            android:id="@+id/tv_introduce_project_item"
+            android:id="@+id/tv_introduce_investor_item"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:maxLines="2"
             android:textColor="#666666"
             android:textSize="13sp" 
-            android:text="儿童动漫微电影第一平台"/>
+            android:text="投资经理，中银投资浙商产业基金"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,22 +44,21 @@
             android:layout_gravity="center" >
 
             <TextView
-                android:id="@+id/tv_location_project_item"
+                android:id="@+id/tv_hanrvest_investor_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:textColor="#666666"
                 android:textSize="13sp" 
-                android:text="北京"/>
+                android:text="收货项目:"/>
 
             <TextView
-                android:id="@+id/tv_support_project_item"
-                android:layout_marginRight="10dp"
+                android:id="@+id/tv_hanrvestnum_investor_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="5"
-                android:textColor="#666666"
+                android:layout_toRightOf="@id/tv_hanrvest_investor_item"
+                android:text="1151"
+                android:textColor="#4BBFEF"
                 android:textSize="13sp" />
         </RelativeLayout>
     </LinearLayout>

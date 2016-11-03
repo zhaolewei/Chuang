@@ -2,8 +2,9 @@ package com.threegroup.vchuang.ourfragment;
 
 import java.util.ArrayList;
 
+import com.jyy.InvestorActivity;
+import com.jyy.ProjectActivity;
 import com.jyy.bean.ActivityBean;
-import com.threegroup.vchuang.ProjectActivity;
 import com.threegroup.vchuang.R;
 
 import android.app.Activity;
@@ -80,7 +81,9 @@ public class DiscoverFragment extends Fragment implements OnPageChangeListener,O
 			}
 		}.start();
 		
-		
+	/**
+	 * 设置活动listview条目的点击事件	
+	 */
 		lv_activity.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -294,7 +297,7 @@ public class DiscoverFragment extends Fragment implements OnPageChangeListener,O
 			startActivity(new Intent(getActivity(),ProjectActivity.class));
 			break;
 		case R.id.btn_investor:
-			Toast.makeText(getActivity(),"投资人列表",Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(getActivity(),InvestorActivity.class));
 			break;
 
 		}
