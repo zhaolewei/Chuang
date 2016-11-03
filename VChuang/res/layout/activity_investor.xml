@@ -10,13 +10,7 @@
         android:layout_height="40dp"
         android:background="#eee" >
 
-        <ImageButton
-            android:id="@+id/imgbtn_back_investor"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/back_gray" />
+        
 
         <TextView
             android:layout_width="match_parent"
@@ -25,7 +19,13 @@
             android:text="投资人"
             android:textColor="#4D4F62"
             android:textSize="15sp" />
-
+		<ImageButton
+            android:id="@+id/imgbtn_back_investor"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back" />
         <ImageButton
             android:id="@+id/imgbtn_search_investor"
             android:layout_width="25dp"
