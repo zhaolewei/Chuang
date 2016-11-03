@@ -23,6 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.jyy.ProjectActivity"
+            android:label="@string/title_activity_project" >
+        </activity>
+        <activity
+            android:name="com.jyy.InvestorActivity"
+            android:label="@string/title_activity_investor" >
+        </activity>
     </application>
 
 </manifest>

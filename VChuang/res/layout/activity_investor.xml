@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/rl_first_floor_investor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#eee" >
+
+        <ImageButton
+            android:id="@+id/imgbtn_back_investor"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="投资人"
+            android:textColor="#4D4F62"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/imgbtn_search_investor"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/icon_search_discover" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_investor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_first_floor_investor" >
+    </ListView>
+
+</RelativeLayout>
