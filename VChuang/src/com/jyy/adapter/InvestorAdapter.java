@@ -6,11 +6,13 @@ import com.jyy.bean.InvestorBean;
 import com.jyy.bean.ProjectBean;
 import com.jyy.view.ImageViewForUrl;
 import com.threegroup.vchuang.R;
+import com.zlw.view.CircleImageView;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 public class InvestorAdapter extends BaseAdapter {
@@ -47,14 +49,13 @@ public class InvestorAdapter extends BaseAdapter {
 		TextView tv_name = (TextView) v.findViewById(R.id.tv_name_investor_item);
 		TextView tv_introduce = (TextView) v.findViewById(R.id.tv_introduce_investor_item);
 		TextView tv_harvestnum = (TextView) v.findViewById(R.id.tv_hanrvestnum_investor_item);
-		ImageViewForUrl img_icon = (ImageViewForUrl) v.findViewById(R.id.img_icon_investor_item);
+		CircleImageView img_icon = (CircleImageView) v.findViewById(R.id.img_icon_investor_item);
 		
 		InvestorBean ib = InvestorList.get(position);
 		tv_name.setText(ib.getName());
 		tv_introduce.setText(ib.getIntroduce());
 		tv_harvestnum.setText(ib.getHarvestnum());
-		img_icon.setBackgroundResource(ib.getIcon());
-		
+		img_icon.setImageResource(ib.getIcon());
 		return v;
 	}
 
