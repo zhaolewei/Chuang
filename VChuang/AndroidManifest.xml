@@ -31,6 +31,15 @@
             android:name="com.jyy.InvestorActivity"
             android:label="@string/title_activity_investor" >
         </activity>
+        <activity
+            android:name="com.jyy.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        
+        <activity
+            android:name="com.jyy.Lunbotu"
+            android:label="@string/title_activity_lunbotu" >
+        </activity>
     </application>
 
 </manifest>

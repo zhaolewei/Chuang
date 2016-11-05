@@ -3,11 +3,14 @@ package com.threegroup.vchuang.ourfragment;
 import java.util.ArrayList;
 
 import com.jyy.InvestorActivity;
+import com.jyy.Lunbotu;
 import com.jyy.ProjectActivity;
+import com.jyy.adapter.ActiveAdapter;
 import com.jyy.bean.ActivityBean;
 import com.threegroup.vchuang.R;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,22 +32,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DiscoverFragment extends Fragment implements OnPageChangeListener, OnClickListener {
-	private ViewPager viewPager;
-	private LinearLayout ll_point_container;
+public class DiscoverFragment extends Fragment  {
 	private View view;
-	private int[] imageResIds;
-	private ArrayList<ImageView> imageViewList;
-	private int lastEnablePoint = 0;
-	private boolean isRunning = true;
 	private ListView lv_activity;
 	private ArrayList<ActivityBean> activityBeanList;
+	private View header;
+	private Context mContext;
+	private ViewPager viewPager;
+	private View lunbotu;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+		mContext = getActivity();
 		view = inflater.inflate(R.layout.fragment_discover, null);
 
+		lunbotu = new Lunbotu((Activity) mContext).getLunbotu();
+		
 		// 初始化布局 View视图
 		initViews();
 
@@ -54,27 +58,8 @@ public class DiscoverFragment extends Fragment implements OnPageChangeListener, 
 		// Controller控制器
 		initAdapter();
 
-		// 开启轮循
-		new Thread() {
-			@Override
-			public void run() {
-
-				while (isRunning) {
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					((Activity) getContext()).runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-						}
-					});
-				}
-			}
-		}.start();
-
+		
+		
 		/**
 		 * 设置活动listview条目的点击事件
 		 */
@@ -89,68 +74,41 @@ public class DiscoverFragment extends Fragment implements OnPageChangeListener, 
 		return view;
 	}
 
-	@Override
-	public void onDestroy() {
-		isRunning = false;
-		super.onDestroy();
-	}
-
 	public void initViews() {
-
-		/**
-		 * 轮播图
-		 */
-		viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-		viewPager.addOnPageChangeListener(this);
-
-		ll_point_container = (LinearLayout) view.findViewById(R.id.ll_point_container);
-
-		/**
-		 * 项目库按钮，投资人按钮
-		 */
-		Button btn_project = (Button) view.findViewById(R.id.btn_project);
-		btn_project.setOnClickListener(this);
-		Button btn_investor = (Button) view.findViewById(R.id.btn_investor);
-		btn_investor.setOnClickListener(this);
 
 		/**
 		 * ListView
 		 */
 		lv_activity = (ListView) view.findViewById(R.id.lv_activity);
+		
+		
+		header = View.inflate(getActivity(), R.layout.discover_header, null);
+		
+		
+		/**
+		 * 项目库按钮，投资人按钮
+		 */
+		Button btn_project = (Button) header.findViewById(R.id.btn_project);
+		btn_project.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getActivity(), ProjectActivity.class));
+			}
+		});
+		Button btn_investor = (Button) header.findViewById(R.id.btn_investor);
+		btn_investor.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getActivity(), InvestorActivity.class));
+			}
+		});
 
 	}
 
 	public void initData() {
 
-		/**
-		 * 轮播图
-		 */
-		// 图片资源
-		int[] imageResIds = new int[] { R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e };
-		// 初始化要展示的5个ImageView
-		imageViewList = new ArrayList<ImageView>();
-
-		ImageView imageView;
-		View pointView;
-		LayoutParams layoutParams;
-		for (int i = 0; i < imageResIds.length; i++) {
-			// 初始化要显示的图片
-			imageView = new ImageView(getContext());
-			imageView.setBackgroundResource(imageResIds[i]);
-			imageViewList.add(imageView);
-
-			// 添加小白点
-			pointView = new View(getContext());
-			pointView.setBackgroundResource(R.drawable.selector_bg_point);
-
-			layoutParams = new LinearLayout.LayoutParams(10, 10);
-			if (i != 0)
-				layoutParams.leftMargin = 10;
-
-			pointView.setEnabled(false);
-			ll_point_container.addView(pointView, layoutParams);
-
-		}
 		/**
 		 * ListView
 		 */
@@ -165,135 +123,15 @@ public class DiscoverFragment extends Fragment implements OnPageChangeListener, 
 	public void initAdapter() {
 
 		/**
-		 * 轮播图
-		 */
-		ll_point_container.getChildAt(0).setEnabled(true);
-		// 设置适配器
-		viewPager.setAdapter(new MyPagerAdapter());
-		// 默认设置到中间某个位置
-		// int pos = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2 %
-		// imageViewList.size());
-		// 2147483647 / 2 = 1073741823 - (1073741823 % 5)
-		viewPager.setCurrentItem(5000000); // 设置到某个位置
-
-		/**
 		 * ListView
 		 */
-		lv_activity.setAdapter(new MyBaseAdapter());
+		lv_activity.addHeaderView(lunbotu);
+		lv_activity.addHeaderView(header);
+		lv_activity.setAdapter(new ActiveAdapter(mContext, activityBeanList));
 
 	}
 
-	/**
-	 * ListView
-	 */
-	class MyBaseAdapter extends BaseAdapter {
+	
 
-		@Override
-		public int getCount() {
-			return activityBeanList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return activityBeanList.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return activityBeanList.get(position).getId();
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View v = convertView == null ? View.inflate(getContext(), R.layout.activity_item, null) : convertView;
-			TextView tv_title_activity = (TextView) v.findViewById(R.id.tv_title_activity);
-			TextView tv_location = (TextView) v.findViewById(R.id.tv_location);
-			TextView tv_time = (TextView) v.findViewById(R.id.tv_time);
-			ImageView iv_activity = (ImageView) v.findViewById(R.id.iv_activity);
-
-			ActivityBean a = activityBeanList.get(position);
-			tv_title_activity.setText(a.getTitle());
-			tv_location.setText(a.getLocation());
-			tv_time.setText(a.getTime());
-			iv_activity.setImageResource(a.getPic());
-			return v;
-		}
-
-	}
-
-	/**
-	 * 轮播图
-	 */
-	class MyPagerAdapter extends PagerAdapter {
-
-		@Override
-		public int getCount() {
-			return Integer.MAX_VALUE;
-		}
-
-		// 指定复用的判断逻辑
-		@Override
-		public boolean isViewFromObject(View view, Object object) {
-			// 当划到新的条目, 又返回来, view是否可以被复用.
-			// 返回判断规则
-			return view == object;
-		}
-
-		// 返回要显示的条目内容
-		@Override
-		public Object instantiateItem(ViewGroup container, int position) {
-			int newPosition = position % imageViewList.size();
-			ImageView imageView = imageViewList.get(newPosition);
-			// a. 把View对象添加到container中
-			container.addView(imageView);
-			// b. 把View对象返回给框架, 适配器
-			return imageView; // 必须重写, 否则报异常
-		}
-
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
-
-			container.removeView((View) object);
-		}
-	}
-
-	/**
-	 * 处理轮播图状态改变事件
-	 */
-	@Override
-	public void onPageScrollStateChanged(int state) {
-		// 滚动时调用
-	}
-
-	@Override
-	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-		// 滚动状态变化时调用
-	}
-
-	@Override
-	public void onPageSelected(int position) {
-		int newPosition = position % imageViewList.size();
-		// 新的条目被选中时调用
-		ll_point_container.getChildAt(lastEnablePoint).setEnabled(false);
-		ll_point_container.getChildAt(newPosition).setEnabled(true);
-		lastEnablePoint = newPosition;
-	}
-
-	/**
-	 * 处理点击事件
-	 */
-	@Override
-	public void onClick(View v) {
-
-		switch (v.getId()) {
-		case R.id.btn_project:
-			startActivity(new Intent(getActivity(), ProjectActivity.class));
-			break;
-		case R.id.btn_investor:
-			startActivity(new Intent(getActivity(), InvestorActivity.class));
-			break;
-
-		}
-
-	}
+	
 }

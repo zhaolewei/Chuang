@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/rl_first_floor_search"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" 
+        android:background="#eee">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="310dp"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:inputType="text|none"
+            android:drawableLeft="@drawable/search1"
+            android:background="@drawable/shape_circle_rectangle"
+            android:drawablePadding="2dp"
+            android:hint="search……"
+            android:gravity="center"
+            android:textSize="11sp"
+            android:singleLine="true"
+            android:imeOptions="actionSearch">
+            <requestFocus />
+        </EditText>
+        <TextView 
+            android:id="@+id/tv_cancel_search"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:text="取消"
+            android:textColor="#31B5EB"
+            android:layout_alignParentRight="true"
+            android:gravity="center"/>
+        
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:layout_below="@id/rl_first_floor_search">
+    </ListView>
+
+
+</RelativeLayout>

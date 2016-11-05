@@ -33,7 +33,6 @@
         android:id="@+id/iv_activity"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/a1"
         android:layout_alignParentRight="true" />
 
 </RelativeLayout>

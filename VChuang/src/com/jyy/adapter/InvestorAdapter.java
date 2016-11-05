@@ -56,6 +56,10 @@ public class InvestorAdapter extends BaseAdapter {
 		tv_introduce.setText(ib.getIntroduce());
 		tv_harvestnum.setText(ib.getHarvestnum());
 		img_icon.setImageResource(ib.getIcon());
+		
+		//设置图片的标记，在更新ui时判断下url是否一致，防止图片重复
+		img_icon.setTag(ib.getIcon_url());
+		
 		return v;
 	}
 

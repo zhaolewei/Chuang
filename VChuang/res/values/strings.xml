@@ -7,5 +7,7 @@
     <string name="load_more_text">正在加载...</string>
     <string name="title_activity_project">ProjectActivity</string>
     <string name="title_activity_investor">InvestorActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_lunbotu">LunbotuActivity</string>
 
 </resources>

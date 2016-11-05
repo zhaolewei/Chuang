@@ -8,6 +8,7 @@ import com.threegroup.vchuang.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,9 +44,17 @@ public class InvestorActivity extends Activity {
 				finish();
 			}
 		});
-		
+		//给搜索按钮设置点击事件
 		ImageButton imgbtn_search = (ImageButton) findViewById(R.id.imgbtn_search_investor);
-		
+		imgbtn_search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(InvestorActivity.this, SearchActivity.class);
+				intent.putExtra("source", "investor");
+				startActivity(intent);
+			}
+		});
 		
 		//初始化investorList数据
 		for (int i = 0; i < 10; i++) {

@@ -58,7 +58,8 @@ public class ProjectAdapter extends BaseAdapter {
 		tv_support.setText(pb.getSupport());
 		img_logo.setBackgroundResource(pb.getLogo());
 		
-		
+		//设置图片的标记，在更新ui时判断下url是否一致，防止图片重复
+		img_logo.setTag(pb.getLogo_url());
 		
 		return v ;
 	}
