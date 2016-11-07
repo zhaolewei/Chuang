@@ -31,47 +31,46 @@ public class ProjectActivity extends Activity {
 
 		mContext = this;
 		projectList = new ArrayList<ProjectBean>();
-		
-		ListView lv =(ListView) findViewById(R.id.lv_project);
-		lv.setAdapter(new ProjectAdapter(mContext, projectList));
-		
-		//给返回按钮设置点击事件
-				ImageButton imgbtn = (ImageButton) findViewById(R.id.imgbtn_back_project);
-				imgbtn.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
 
-						finish();
-					}
-				});
-		
-		//给 搜索 TextView设置点击事件
-				TextView tv_search = (TextView) findViewById(R.id.tv_search_project);
-				tv_search.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						Intent intent = new Intent(ProjectActivity.this, SearchActivity.class);
-						intent.putExtra("source", "project");
-						startActivity(intent);
-					}
-				});
-				
-		//初始化projectList数据
+		ListView lv = (ListView) findViewById(R.id.lv_project);
+		lv.setAdapter(new ProjectAdapter(mContext, projectList));
+
+		// 给返回按钮设置点击事件
+		ImageButton imgbtn = (ImageButton) findViewById(R.id.imgbtn_back_project);
+		imgbtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				finish();
+			}
+		});
+
+		// 给 搜索 TextView设置点击事件
+		TextView tv_search = (TextView) findViewById(R.id.tv_search_project);
+		tv_search.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ProjectActivity.this, SearchActivity.class);
+				intent.putExtra("source", "project");
+				startActivity(intent);
+			}
+		});
+
+		// 初始化projectList数据
 		for (int i = 0; i < 10; i++) {
-			ProjectBean pb = new ProjectBean(i, "童漫秀", "儿童动漫微电影第一平台", "北京", "6", R.drawable.d);
+			ProjectBean pb = new ProjectBean(i, "童漫秀", "儿童动漫微电影第一平台", "北京", 6, "", "");
 			projectList.add(pb);
 		}
-		
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
 			}
 		});
-		
 
 	}
 }

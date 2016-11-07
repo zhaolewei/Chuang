@@ -15,12 +15,12 @@ import android.widget.TextView;
 public class ActiveAdapter extends BaseAdapter {
 	private Context context;
 	private ArrayList<ActivityBean> activityBeanList;
-	
-	public ActiveAdapter(Context context ,ArrayList<ActivityBean> activityBeanList ) {
+
+	public ActiveAdapter(Context context, ArrayList<ActivityBean> activityBeanList) {
 		this.context = context;
 		this.activityBeanList = activityBeanList;
 	}
-	
+
 	@Override
 	public int getCount() {
 		return activityBeanList.size();
@@ -48,12 +48,11 @@ public class ActiveAdapter extends BaseAdapter {
 		tv_title_activity.setText(a.getTitle());
 		tv_location.setText(a.getLocation());
 		tv_time.setText(a.getTime());
-		iv_activity.setImageResource(a.getPic());
-		
-		//设置图片的标记，在更新ui时判断下url是否一致，防止图片重复
+		iv_activity.setImageResource(R.drawable.test_user_photo);
+
+		// 设置图片的标记，在更新ui时判断下url是否一致，防止图片重复
 		iv_activity.setTag(a.getPic_url());
 		return v;
 	}
-
 
 }

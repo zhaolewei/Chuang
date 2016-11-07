@@ -110,7 +110,7 @@ public class DiscoverFragment extends Fragment {
 		 */
 		activityBeanList = new ArrayList<ActivityBean>();
 		for (int i = 0; i < 10; i++) {
-			ActivityBean ab = new ActivityBean(i, "V创投递直通车，助力高效融资(10月最后10席)", "北京", "2016.11.2", R.drawable.a1);
+			ActivityBean ab = new ActivityBean(i, "V创投递直通车，助力高效融资(10月最后10席)", "北京", "2016.11.2", "", "");
 			activityBeanList.add(ab);
 		}
 	}

@@ -1,36 +1,31 @@
 package com.jyy.bean;
 
 public class ActivityBean {
-
-	private int id;
-	private String title;
-	private String location;
-	private String time;
-	private String pic_url;
-	private int pic;
+	/**
+	 * 活动bean
+	 */
+	private int id;  //id
+	private String title;  //活动的标题
+	private String location;  //活动的地点
+	private String time;  //活动时间
+	private String pic_url;  //活动海报url
 	
-	public ActivityBean(int id, String title, String location, String time, String icon_url) {
+	private String content; //活动内容
+	
+	
+	public ActivityBean() {
+		super();
+	}
+	public ActivityBean(int id, String title, String location, String time,
+			String pic_url, String content) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.location = location;
 		this.time = time;
-		this.pic_url = icon_url;
-		
+		this.pic_url = pic_url;
+		this.content = content;
 	}
-	public ActivityBean(int id, String title, String location, String time, int pic) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.location = location;
-		this.time = time;
-		this.pic = pic;
-		
-	}
-	public ActivityBean(){
-		super();
-	}
-	
 	
 	public int getId() {
 		return id;
@@ -59,14 +54,13 @@ public class ActivityBean {
 	public String getPic_url() {
 		return pic_url;
 	}
-	public void setPic_url(String icon_url) {
-		this.pic_url = icon_url;
+	public void setPic_url(String pic_url) {
+		this.pic_url = pic_url;
 	}
-	public int getPic() {
-		return pic;
+	public String getContent() {
+		return content;
 	}
-	public void setPic(int pic) {
-		this.pic = pic;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	
 }

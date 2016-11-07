@@ -56,7 +56,7 @@ public class ProjectAdapter extends BaseAdapter {
 		tv_title.setText(pb.getTitle());
 		tv_introduce.setText(pb.getIntroduce());
 		tv_location.setText(pb.getLocation());
-		tv_support.setText(pb.getSupport());
+		tv_support.setText(pb.getZan_count());
 		img_logo.setImageResource(R.drawable.test_user_photo);
 
 		// 设置图片的标记，在更新ui时判断下url是否一致，防止图片重复

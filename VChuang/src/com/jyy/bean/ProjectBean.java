@@ -2,38 +2,34 @@ package com.jyy.bean;
 
 public class ProjectBean {
 
+	/**
+	 * 项目bean
+	 */
 	private int id;
-	private String title;
-	private String introduce;
-	private String location;
-	private String support;
-	private String logo_url;
-	private int logo;
+	private String title;   //项目的标题
+	private String introduce;  //项目的介绍
+	private String location;  //项目人所在地
+	private int zan_count;  //点赞人数
+	private String logo_url;  //logo url
+	
+	private String content; //项目详细内容
 	
 	
 	
-	public ProjectBean(int id, String title, String introduce, String location, String support, String logo_url) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.introduce = introduce;
-		this.location = location;
-		this.support = support;
-		this.logo_url = logo_url;
-	}
-	public ProjectBean(int id, String title, String introduce, String location, String support, int logo) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.introduce = introduce;
-		this.location = location;
-		this.support = support;
-		this.logo = logo;
-	}
 	public ProjectBean() {
 		super();
 	}
-	
+	public ProjectBean(int id, String title, String introduce, String location,
+			int zan_count, String logo_url, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.introduce = introduce;
+		this.location = location;
+		this.zan_count = zan_count;
+		this.logo_url = logo_url;
+		this.content = content;
+	}
 	public int getId() {
 		return id;
 	}
@@ -58,11 +54,11 @@ public class ProjectBean {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getSupport() {
-		return support;
+	public int getZan_count() {
+		return zan_count;
 	}
-	public void setSupport(String support) {
-		this.support = support;
+	public void setZan_count(int zan_count) {
+		this.zan_count = zan_count;
 	}
 	public String getLogo_url() {
 		return logo_url;
@@ -70,10 +66,12 @@ public class ProjectBean {
 	public void setLogo_url(String logo_url) {
 		this.logo_url = logo_url;
 	}
-	public int getLogo() {
-		return logo;
+	public String getContent() {
+		return content;
 	}
-	public void setLogo(int logo) {
-		this.logo = logo;
+	public void setContent(String content) {
+		this.content = content;
 	}
+	
+	
 }

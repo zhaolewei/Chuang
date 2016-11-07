@@ -1,72 +1,80 @@
 package com.jyy.bean;
 
 public class InvestorBean {
-
+	/**
+	 * 投资人信息
+	 */
 	private int id;
-	private String name;
-	private String introduce;
-	private String harvestnum;
-	private int icon;
-	private String icon_url;
+	private String name;  //投资人名字
+	private String introduce;  //投资人介绍
+	private int harvest_num;  //收货的项目数
+	private String icon_url;  //头像
 	
+	private String information; //投资人信息 （手机等）  
+
 	
-	
-	public InvestorBean(int id, String name, String introduce, String harvestnum, int icon) {
+	public InvestorBean() {
 		super();
-		this.id = id;
-		this.name = name;
-		this.introduce = introduce;
-		this.harvestnum = harvestnum;
-		this.icon = icon;
 	}
-	public InvestorBean(int id, String name, String introduce,  String harvestnum, String icon_url) {
+	public InvestorBean(int id, String name, String introduce,
+			int harvest_num, String icon_url, String information) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.introduce = introduce;
-		this.harvestnum = harvestnum;
+		this.harvest_num = harvest_num;
 		this.icon_url = icon_url;
+		this.information = information;
 	}
-	public InvestorBean(){
-		super();
-	}
-	
+
 	
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getIntroduce() {
 		return introduce;
 	}
+
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	public String getHarvestnum() {
-		return harvestnum;
+
+	
+
+	public int getHarvest_num() {
+		return harvest_num;
 	}
-	public void setHarvestnum(String harvestnum) {
-		this.harvestnum = harvestnum;
-	}
-	public int getIcon() {
-		return icon;
-	}
-	public void setIcon(int icon) {
-		this.icon = icon;
+	public void setHarvest_num(int harvest_num) {
+		this.harvest_num = harvest_num;
 	}
 	public String getIcon_url() {
 		return icon_url;
 	}
+
 	public void setIcon_url(String icon_url) {
 		this.icon_url = icon_url;
 	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
+	}
+	
 	
 }

@@ -22,32 +22,32 @@ public class InvestorActivity extends Activity {
 
 	private Context mContext;
 	private ArrayList<InvestorBean> investorList;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_investor);
-		
+
 		mContext = this;
 		investorList = new ArrayList<InvestorBean>();
-		
+
 		ListView lv = (ListView) findViewById(R.id.lv_investor);
 		lv.setAdapter(new InvestorAdapter(mContext, investorList));
-		
-		//给返回按钮设置点击事件
+
+		// 给返回按钮设置点击事件
 		ImageButton imgbtn_back = (ImageButton) findViewById(R.id.imgbtn_back_investor);
 		imgbtn_back.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 
 				finish();
 			}
 		});
-		//给搜索按钮设置点击事件
+		// 给搜索按钮设置点击事件
 		ImageButton imgbtn_search = (ImageButton) findViewById(R.id.imgbtn_search_investor);
 		imgbtn_search.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(InvestorActivity.this, SearchActivity.class);
@@ -55,23 +55,22 @@ public class InvestorActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		
-		//初始化investorList数据
+
+		// 初始化investorList数据
 		for (int i = 0; i < 10; i++) {
-			InvestorBean ib = new InvestorBean(i, "汪涵", "投资经理，中银投资浙商产业基金", "1151", R.drawable.c); 
+			InvestorBean ib = new InvestorBean(i, "汪涵", "投资经理，中银投资浙商产业基金", 113, "", "");
 			investorList.add(ib);
-			
+
 		}
-		
-		//给listview条目设置点击事件
+
+		// 给listview条目设置点击事件
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
 			}
 		});
-		
-		
+
 	}
 }
