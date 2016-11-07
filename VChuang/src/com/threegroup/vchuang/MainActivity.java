@@ -12,6 +12,7 @@ import com.zlw.mymodel.adapter.MainViewPagerAdapter;
 import com.zlw.mymodel.ui.fragment.ListFragment;
 import com.zlw.mymodel.ui.fragment.TestFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -26,8 +27,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 	// 控件
 	private TabLayout tabLayout;
 	private ViewPager vp;
-	// 全局数据集
-	private List<ImageView> imageViews; // Tab中的Imageview集（用于修改透明度达到变色效果）
+
+	// TAB控件集
+	private List<ImageView> ivs; // Tab中的Imageview集（用于修改透明度达到变色效果）
+	private List<TextView> tvs; // Tab中的TextView集
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +57,25 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 		Log.i("zlw", "123initData===========");
 		// 设置TabLayout中的Tab样式
-		imageViews = new ArrayList<ImageView>();
+		ivs = new ArrayList<ImageView>();
+		tvs = new ArrayList<TextView>();
 		for (int i = 0; i < fragments.size(); i++) {
 			TabLayout.Tab tab = tabLayout.getTabAt(i);
-			tab.setCustomView(R.layout.item_main_tab); // 设置Tab
+			tab.setCustomView(R.layout.item_main_tab); // 设置Tab item
+
+			// Tab的Text
 			TextView tv = (TextView) tab.getCustomView().findViewById(R.id.item_main_tab_text);
 			tv.setText(tabData[i]);
 			tv.setTextSize(10f);
+			tv.setTextColor(Color.RED);
+			tvs.add(tv);
+
 			// 提取ImageView
 			ImageView img = (ImageView) tab.getCustomView().findViewById(R.id.tab_icon);
-			imageViews.add(img);
+			ivs.add(img);
 			if (i != 0) {
-				img.setImageAlpha(0);
+				img.setImageAlpha(0); // 设置为白色
+				tv.setTextColor(Color.BLACK);
 			}
 		}
 		// tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);//适合很多tab
@@ -87,18 +97,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 	// ViewPager.OnPageChangeListener
 	@Override
 	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-		/**
-		 * 经测试发现：|界面0|-------|界面1|--------|界面2|
-		 * —position=0—|—position=1—|—position=2—... 属性变化时可逆的
-		 *
-		 *
-		 */
 
-		ImageView imgView = imageViews.get(position);
+		ImageView imgView = ivs.get(position);
 		int offset = (int) (positionOffset * 255);
 
-		if (position < imageViews.size() - 1) {
-			ImageView imgView2 = imageViews.get(position + 1);
+		// 左右两图渐变处理 255：白 0：红
+
+		if (position < ivs.size() - 1) {
+			ImageView imgView2 = ivs.get(position + 1);
 			imgView.setImageAlpha(255 - offset);
 			imgView2.setImageAlpha(offset);
 		}
@@ -106,9 +112,35 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 	@Override
 	public void onPageSelected(int position) {
+
+		Log.i("zlw", "position:" + position);
+		selectTabImage(position);
 	}
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
+
 	}
+
+	/**
+	 * 选中
+	 * 
+	 * @param position
+	 */
+	private void selectTabImage(int position) {
+		ImageView img = null;
+		TextView tv = null;
+		for (int i = 0; i < ivs.size(); i++) {
+			img = ivs.get(i);
+			tv = tvs.get(i);
+			if (i == position) {
+				img.setImageAlpha(255);
+				tv.setTextColor(Color.RED);
+			} else {
+				img.setImageAlpha(0);
+				tv.setTextColor(Color.BLACK);
+			}
+		}
+	}
+
 }

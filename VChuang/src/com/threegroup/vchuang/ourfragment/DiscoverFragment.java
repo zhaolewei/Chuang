@@ -32,7 +32,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DiscoverFragment extends Fragment  {
+public class DiscoverFragment extends Fragment {
 	private View view;
 	private ListView lv_activity;
 	private ArrayList<ActivityBean> activityBeanList;
@@ -48,7 +48,7 @@ public class DiscoverFragment extends Fragment  {
 		view = inflater.inflate(R.layout.fragment_discover, null);
 
 		lunbotu = new Lunbotu((Activity) mContext).getLunbotu();
-		
+
 		// 初始化布局 View视图
 		initViews();
 
@@ -58,8 +58,6 @@ public class DiscoverFragment extends Fragment  {
 		// Controller控制器
 		initAdapter();
 
-		
-		
 		/**
 		 * 设置活动listview条目的点击事件
 		 */
@@ -80,17 +78,15 @@ public class DiscoverFragment extends Fragment  {
 		 * ListView
 		 */
 		lv_activity = (ListView) view.findViewById(R.id.lv_activity);
-		
-		
+
 		header = View.inflate(getActivity(), R.layout.discover_header, null);
-		
-		
+
 		/**
 		 * 项目库按钮，投资人按钮
 		 */
 		Button btn_project = (Button) header.findViewById(R.id.btn_project);
 		btn_project.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(getActivity(), ProjectActivity.class));
@@ -98,7 +94,7 @@ public class DiscoverFragment extends Fragment  {
 		});
 		Button btn_investor = (Button) header.findViewById(R.id.btn_investor);
 		btn_investor.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(getActivity(), InvestorActivity.class));
@@ -113,7 +109,6 @@ public class DiscoverFragment extends Fragment  {
 		 * ListView
 		 */
 		activityBeanList = new ArrayList<ActivityBean>();
-
 		for (int i = 0; i < 10; i++) {
 			ActivityBean ab = new ActivityBean(i, "V创投递直通车，助力高效融资(10月最后10席)", "北京", "2016.11.2", R.drawable.a1);
 			activityBeanList.add(ab);
@@ -131,7 +126,4 @@ public class DiscoverFragment extends Fragment  {
 
 	}
 
-	
-
-	
 }

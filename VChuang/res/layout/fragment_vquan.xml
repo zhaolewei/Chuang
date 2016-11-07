@@ -14,7 +14,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_behavior="com.zlw.view.MyBehavior2"
+        app:layout_behavior="com.zlw.view.MyBehavior3"
         android:background="#113D95" />
 
     <android.support.design.widget.FloatingActionButton
@@ -22,7 +22,8 @@
         android:layout_width="58dp"
         android:layout_height="58dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginRight="14dp"
         app:layout_anchor="@id/rv"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_behavior="com.zlw.view.MyBehavior"
