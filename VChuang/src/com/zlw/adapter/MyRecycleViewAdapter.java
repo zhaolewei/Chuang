@@ -24,6 +24,12 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 	private List<String> list;
 	private Context context;
 
+	private OnItemClickListener clickListener;
+
+	public void setClickListener(OnItemClickListener clickListener) {
+		this.clickListener = clickListener;
+	}
+
 	public MyRecycleViewAdapter(List<String> list) {
 		this.list = list;
 	}
@@ -32,20 +38,34 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
-		return new MyViewHolder(view);
+		MyViewHolder mHolder = new MyViewHolder(view);
+
+		return mHolder;
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+	public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 		final MyViewHolder mHolder = (MyViewHolder) holder;
 
 		String str = list.get(position);
+
+		mHolder.view.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (clickListener != null) {
+					clickListener.onItemClick(v, position);
+				}
+			}
+		});
 
 		((View) mHolder.tv_zan.getParent()).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				int isFocus = (int) mHolder.tv_zan.getTag();
 				Log.i("zlw", "" + isFocus);
+				// TODO:iv_zan 数量+1;
 				if (isFocus == 1) {
 					mHolder.iv_zan.setImageResource(R.drawable.feed_zan_pressed);
 					mHolder.tv_zan.setTag(0);
@@ -76,6 +96,7 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 
 	class MyViewHolder extends RecyclerView.ViewHolder {
 
+		public View view;
 		public com.zlw.view.CircleImageView user_photo;
 		public TextView user_name;
 		public TextView user_info;
@@ -94,6 +115,7 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 
 		public MyViewHolder(View itemView) {
 			super(itemView);
+			view = itemView;
 			tv_zan = (TextView) itemView.findViewById(R.id.item_zan_text);
 			iv_zan = (ImageView) itemView.findViewById(R.id.item_zan_img);
 			tv_zan.setTag(1);
@@ -107,5 +129,9 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 	@Override
 	public int getItemCount() {
 		return list.size();
+	}
+
+	public interface OnItemClickListener {
+		public void onItemClick(View v, int position);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.threegroup.vchuang.R;
 import com.zlw.adapter.MyRecycleViewAdapter;
+import com.zlw.adapter.MyRecycleViewAdapter.OnItemClickListener;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * @author 赵乐玮
@@ -47,14 +49,21 @@ public class VQuanFragment extends Fragment {
 		toolbar.setTitleTextColor(Color.WHITE);
 		((AppCompatActivity) getActivity()).setTitle("V创平台");
 
+		// TODO:加载数据（这里模拟数据）
 		List<String> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
 			list.add("数据:  " + i);
 		}
 
 		MyRecycleViewAdapter adapter = new MyRecycleViewAdapter(list);
-		rv.setAdapter(adapter);
-		
 
+		adapter.setClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(View v, int position) {
+				Toast.makeText(getContext(), "position:" + position, 0).show();
+			}
+		});
+		rv.setAdapter(adapter);
 	}
 }
