@@ -1,10 +1,8 @@
 package com.jyy.adapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.jyy.bean.InvestorBean;
-import com.jyy.bean.ProjectBean;
-import com.jyy.view.ImageViewForUrl;
 import com.threegroup.vchuang.R;
 import com.zlw.view.CircleImageView;
 
@@ -12,16 +10,15 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 public class InvestorAdapter extends BaseAdapter {
 
 	private Context context;
-	private ArrayList<InvestorBean> InvestorList;
+	private List<InvestorBean> InvestorList;
 
 	// 通过构造方法接受要显示的项目数据集合
-	public InvestorAdapter(Context context, ArrayList<InvestorBean> InvestorList) {
+	public InvestorAdapter(Context context, List<InvestorBean> InvestorList) {
 
 		this.context = context;
 		this.InvestorList = InvestorList;
@@ -54,7 +51,7 @@ public class InvestorAdapter extends BaseAdapter {
 		InvestorBean ib = InvestorList.get(position);
 		tv_name.setText(ib.getName());
 		tv_introduce.setText(ib.getIntroduce());
-		tv_harvestnum.setText(ib.getHarvest_num());
+		tv_harvestnum.setText(ib.getHarvest_num() + "");
 		img_icon.setImageResource(R.drawable.test_user_photo);
 
 		// 设置图片的标记，在更新ui时判断下url是否一致，防止图片重复

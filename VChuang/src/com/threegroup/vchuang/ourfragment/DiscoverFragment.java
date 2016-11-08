@@ -1,35 +1,39 @@
 package com.threegroup.vchuang.ourfragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.reflect.TypeToken;
 import com.jyy.InvestorActivity;
 import com.jyy.Lunbotu;
 import com.jyy.ProjectActivity;
 import com.jyy.adapter.ActiveAdapter;
 import com.jyy.bean.ActivityBean;
+import com.jyy.bean.DataPackage;
+import com.jyy.bean.VQuanBean;
 import com.threegroup.vchuang.R;
+import com.threegroup.vchuang.config.URLConfig;
+import com.zlw.utils.JsonTools;
+import com.zlw.utils.VolleySingleton;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class DiscoverFragment extends Fragment {
@@ -113,6 +117,30 @@ public class DiscoverFragment extends Fragment {
 			ActivityBean ab = new ActivityBean(i, "V创投递直通车，助力高效融资(10月最后10席)", "北京", "2016.11.2", "", "");
 			activityBeanList.add(ab);
 		}
+	}
+
+	private void getData() {
+
+		StringRequest stringRequest = new StringRequest(URLConfig.PATH + URLConfig.URL_GetActive,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+
+						DataPackage<ActivityBean> data = JsonTools.fromJson(response,
+								new TypeToken<DataPackage<ActivityBean>>() {
+								}.getType());
+						List<ActivityBean> list = data.datas; // 获取到的数据
+
+						// TODO:刷新界面
+						// flushList();// 刷新界面List
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.d("zlw", "error:" + error);
+					}
+				});
+		VolleySingleton.getVolleySingleton(getContext()).addToRequestQueue(stringRequest);
 	}
 
 	public void initAdapter() {

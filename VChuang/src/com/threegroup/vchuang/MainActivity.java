@@ -9,8 +9,6 @@ import com.threegroup.vchuang.ourfragment.MeFragment;
 import com.threegroup.vchuang.ourfragment.MessageFragment;
 import com.threegroup.vchuang.ourfragment.VQuanFragment;
 import com.zlw.mymodel.adapter.MainViewPagerAdapter;
-import com.zlw.mymodel.ui.fragment.ListFragment;
-import com.zlw.mymodel.ui.fragment.TestFragment;
 
 import android.graphics.Color;
 import android.os.Bundle;

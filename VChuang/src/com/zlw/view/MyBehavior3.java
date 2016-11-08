@@ -48,7 +48,6 @@ public class MyBehavior3 extends CoordinatorLayout.Behavior {
 
 		if (dyConsumed > 20) {
 
-			Log.i("zlw", "dy>20" + dyConsumed);
 		}
 		// 分发机智
 	}
@@ -68,7 +67,6 @@ public class MyBehavior3 extends CoordinatorLayout.Behavior {
 		View parent = (View) child.getParent();
 		View rv = parent.findViewById(R.id.rv);
 		ViewCompat.animate(rv).translationY(0).start();
-		
 
 		tabAnimat(parent, child.getHeight());
 	}

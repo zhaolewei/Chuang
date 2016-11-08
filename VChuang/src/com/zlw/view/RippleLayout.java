@@ -21,10 +21,9 @@ import java.util.ArrayList;
 public class RippleLayout extends RelativeLayout {
 
 	private Paint mPaint; // 用户绘制波纹的画笔
-	private int clickedViewWidth;
-	private int clickedViewHeight;
+	private int clickedViewWidth, clickedViewHeight; // 被点击控件的宽高
 
-	private int mMaxRippleRadius;
+	private int mMaxRippleRadius; // 将要绘制的最大圆形的半径
 	private int mRippleRadiusGap;
 	private int mRippleRadius = 0;
 	private float mCenterX;

@@ -3,11 +3,21 @@ package com.threegroup.vchuang.ourfragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.reflect.TypeToken;
+import com.jyy.bean.DataPackage;
+import com.jyy.bean.VQuanBean;
 import com.threegroup.vchuang.R;
-import com.zlw.adapter.MyRecycleViewAdapter;
-import com.zlw.adapter.MyRecycleViewAdapter.OnItemClickListener;
+import com.threegroup.vchuang.config.URLConfig;
+import com.zlw.adapter.VQuanRecycleViewAdapter;
+import com.zlw.adapter.VQuanRecycleViewAdapter.OnItemClickListener;
+import com.zlw.utils.JsonTools;
+import com.zlw.utils.VolleySingleton;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -15,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +40,52 @@ public class VQuanFragment extends Fragment {
 	private FloatingActionButton fab;
 	private Toolbar toolbar;
 
+	private List<VQuanBean> list = new ArrayList<VQuanBean>();
+	private VQuanRecycleViewAdapter adapter;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View view = inflater.inflate(R.layout.fragment_vquan, null);
 		initView(view);
+
+		initData();
+
 		return view;
+	}
+
+	/**
+	 * 网络请求- 加载数据
+	 */
+	private void initData() {
+
+		StringRequest stringRequest = new StringRequest(URLConfig.PATH + URLConfig.URL_GetVQuan,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+
+						DataPackage<VQuanBean> data = JsonTools.fromJson(response,
+								new TypeToken<DataPackage<VQuanBean>>() {
+								}.getType());
+						list = data.datas;
+						Log.i("zlw", "list.size:" + list.size());
+
+						flushList();// 刷新界面List
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.d("zlw", "error:" + error);
+					}
+				});
+		VolleySingleton.getVolleySingleton(getContext()).addToRequestQueue(stringRequest);
+	}
+
+	private void flushList() {
+		Log.i("zlw", "刷新界面");
+
+		adapter.setList(list);
+		adapter.notifyDataSetChanged();
 	}
 
 	private void initView(View view) {
@@ -49,13 +100,7 @@ public class VQuanFragment extends Fragment {
 		toolbar.setTitleTextColor(Color.WHITE);
 		((AppCompatActivity) getActivity()).setTitle("V创平台");
 
-		// TODO:加载数据（这里模拟数据）
-		List<String> list = new ArrayList<>();
-		for (int i = 0; i < 20; i++) {
-			list.add("数据:  " + i);
-		}
-
-		MyRecycleViewAdapter adapter = new MyRecycleViewAdapter(list);
+		adapter = new VQuanRecycleViewAdapter(list);
 
 		adapter.setClickListener(new OnItemClickListener() {
 
@@ -66,4 +111,21 @@ public class VQuanFragment extends Fragment {
 		});
 		rv.setAdapter(adapter);
 	}
+	//
+	// class GetVQuanAsyncTask extends AsyncTask<Void, Void, List<VQuanBean>> {
+	//
+	// @Override
+	// protected List<VQuanBean> doInBackground(Void... params) {
+	//
+	// return null;
+	//
+	// }
+	//
+	// @Override
+	// protected void onPostExecute(List<VQuanBean> result) {
+	// super.onPostExecute(result);
+	// }
+	//
+	// }
+
 }

@@ -1,6 +1,7 @@
 package com.jyy.adapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.jyy.bean.ActivityBean;
 import com.threegroup.vchuang.R;
@@ -14,9 +15,9 @@ import android.widget.TextView;
 
 public class ActiveAdapter extends BaseAdapter {
 	private Context context;
-	private ArrayList<ActivityBean> activityBeanList;
+	private List<ActivityBean> activityBeanList;
 
-	public ActiveAdapter(Context context, ArrayList<ActivityBean> activityBeanList) {
+	public ActiveAdapter(Context context, List<ActivityBean> activityBeanList) {
 		this.context = context;
 		this.activityBeanList = activityBeanList;
 	}

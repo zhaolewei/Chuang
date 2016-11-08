@@ -1,15 +1,26 @@
 package com.jyy;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.reflect.TypeToken;
 import com.jyy.adapter.ProjectAdapter;
+import com.jyy.bean.ActivityBean;
+import com.jyy.bean.DataPackage;
 import com.jyy.bean.ProjectBean;
 import com.threegroup.vchuang.R;
+import com.threegroup.vchuang.config.URLConfig;
+import com.zlw.utils.JsonTools;
+import com.zlw.utils.VolleySingleton;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -71,6 +82,28 @@ public class ProjectActivity extends Activity {
 				Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
 
+	private void getData() {
+		StringRequest stringRequest = new StringRequest(URLConfig.PATH + URLConfig.URL_GetProject,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+
+						DataPackage<ProjectBean> data = JsonTools.fromJson(response,
+								new TypeToken<DataPackage<ProjectBean>>() {
+								}.getType());
+						List<ProjectBean> list = data.datas; // 获取到的数据
+
+						// TODO:刷新界面
+						// flushList();// 刷新界面List
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.d("zlw", "error:" + error);
+					}
+				});
+		VolleySingleton.getVolleySingleton(getApplicationContext()).addToRequestQueue(stringRequest);
 	}
 }
