@@ -76,7 +76,6 @@ public class InvestorActivity extends Activity {
 
 		// 给listview条目设置点击事件
 		lv.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();

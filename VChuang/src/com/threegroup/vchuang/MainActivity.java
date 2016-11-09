@@ -10,6 +10,7 @@ import com.threegroup.vchuang.ourfragment.MessageFragment;
 import com.threegroup.vchuang.ourfragment.VQuanFragment;
 import com.zlw.mymodel.adapter.MainViewPagerAdapter;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 	// TAB控件集
 	private List<ImageView> ivs; // Tab中的Imageview集（用于修改透明度达到变色效果）
 	private List<TextView> tvs; // Tab中的TextView集
+	private int[] tab_icon = new int[] { R.drawable.tab1_home_on, R.drawable.tab2_discover_on,
+			R.drawable.tab3_center_on, R.drawable.tab4_message_on, R.drawable.tab5_people_on };
+	private int[] tab_icon_back = new int[] { R.drawable.tab1_home_off, R.drawable.tab2_discover_off,
+			R.drawable.tab3_center_off, R.drawable.tab4_message_off, R.drawable.tab5_people_off };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +70,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 			TextView tv = (TextView) tab.getCustomView().findViewById(R.id.item_main_tab_text);
 			tv.setText(tabData[i]);
 			tv.setTextSize(10f);
-			tv.setTextColor(Color.RED);
+			tv.setTextColor(Color.parseColor("#00A9ED"));
 			tvs.add(tv);
 
 			// 提取ImageView
 			ImageView img = (ImageView) tab.getCustomView().findViewById(R.id.tab_icon);
+			ImageView img_back = (ImageView) tab.getCustomView().findViewById(R.id.tab_icon_back);
+			img.setImageResource(tab_icon[i]);
+			img_back.setImageResource(tab_icon_back[i]);
 			ivs.add(img);
 			if (i != 0) {
 				img.setImageAlpha(0); // 设置为白色
-				tv.setTextColor(Color.BLACK);
+				tv.setTextColor(Color.parseColor("#616E74"));
 			}
 		}
 		// tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);//适合很多tab
@@ -106,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 			imgView.setImageAlpha(255 - offset);
 			imgView2.setImageAlpha(offset);
 		}
+
 	}
 
 	@Override
@@ -133,10 +142,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 			tv = tvs.get(i);
 			if (i == position) {
 				img.setImageAlpha(255);
-				tv.setTextColor(Color.RED);
+				tv.setTextColor(Color.parseColor("#00A9ED"));
 			} else {
 				img.setImageAlpha(0);
-				tv.setTextColor(Color.BLACK);
+				tv.setTextColor(Color.parseColor("#616E74"));
 			}
 		}
 	}

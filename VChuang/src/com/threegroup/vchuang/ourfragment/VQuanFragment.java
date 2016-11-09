@@ -13,22 +13,24 @@ import com.threegroup.vchuang.R;
 import com.threegroup.vchuang.config.URLConfig;
 import com.zlw.adapter.VQuanRecycleViewAdapter;
 import com.zlw.adapter.VQuanRecycleViewAdapter.OnItemClickListener;
+import com.zlw.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
+import com.zlw.pullloadmorerecyclerview.PullLoadMoreRecyclerView.PullLoadMoreListener;
 import com.zlw.utils.JsonTools;
 import com.zlw.utils.VolleySingleton;
 
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 /**
@@ -36,7 +38,7 @@ import android.widget.Toast;
  *
  */
 public class VQuanFragment extends Fragment {
-	private RecyclerView rv;
+	private PullLoadMoreRecyclerView rv;
 	private FloatingActionButton fab;
 	private Toolbar toolbar;
 
@@ -89,9 +91,49 @@ public class VQuanFragment extends Fragment {
 	}
 
 	private void initView(View view) {
-		rv = (RecyclerView) view.findViewById(R.id.rv);
-		rv.setLayoutManager(new LinearLayoutManager(getContext()));
+		rv = (PullLoadMoreRecyclerView) view.findViewById(R.id.rv);
+		rv.setLinearLayout();
+		rv.setFooterViewText("loading");
 
+		// rv.setRefreshing(true);// 设置下拉刷新是否可见
+		rv.setPullRefreshEnable(true);// 设置是否下拉刷新
+		rv.setPushRefreshEnable(true);// 设置是否上拉刷新
+		rv.setOnPullLoadMoreListener(new PullLoadMoreListener() {
+
+			@Override
+			public void onRefresh() {
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						getActivity().runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								rv.setPullLoadMoreCompleted();
+								Toast.makeText(getActivity(), "刷新成功", 0).show();
+							}
+						});
+					}
+				}, 2000);
+
+			}
+
+			@Override
+			public void onLoadMore() {
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						getActivity().runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								rv.setPullLoadMoreCompleted();
+								Toast.makeText(getActivity(), "暂无数据", 0).show();
+							}
+						});
+					}
+				}, 2000);
+
+			}
+		});
 		fab = (FloatingActionButton) view.findViewById(R.id.fab);
 		// fab.attachToRecyclerView(rv);
 
@@ -110,22 +152,13 @@ public class VQuanFragment extends Fragment {
 			}
 		});
 		rv.setAdapter(adapter);
+
+		// ViewCompat.animate(rv).translationY(toolbar.getHeight() * 2).start();
+		// Animation translateIn = new TranslateAnimation(0, 0, 0,
+		// toolbar.getHeight());
+		// translateIn.setDuration(500);
+		// translateIn.setFillAfter(true);
+		// rv.startAnimation(translateIn);
 	}
-	//
-	// class GetVQuanAsyncTask extends AsyncTask<Void, Void, List<VQuanBean>> {
-	//
-	// @Override
-	// protected List<VQuanBean> doInBackground(Void... params) {
-	//
-	// return null;
-	//
-	// }
-	//
-	// @Override
-	// protected void onPostExecute(List<VQuanBean> result) {
-	// super.onPostExecute(result);
-	// }
-	//
-	// }
 
 }

@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by zlw on 2016/10/31 0031.
@@ -100,9 +102,12 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 		}
 
 		// 赞
-		if ((int) mHolder.tv_zan.getTag() == 1) {
-			mHolder.iv_zan.setImageResource(R.drawable.feed_zan_pressed);
-		}
+		int isFouse = (int) mHolder.tv_zan.getTag();
+		// if (isFouse == 1) {
+		// mHolder.iv_zan.setImageResource(R.drawable.feed_zan_normal);
+		// } else {
+		// mHolder.iv_zan.setImageResource(R.drawable.feed_zan_pressed);
+		// }
 
 		// 绑定事件
 		bindEvent(mHolder, position);
@@ -179,8 +184,9 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 		((View) mHolder.tv_zan.getParent()).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				int isFocus = (int) mHolder.tv_zan.getTag();
+				int isFocus = (int) mHolder.tv_zan.getTag(); // 1:正常； 0:已赞
 				Log.i("zlw", "" + isFocus);
+
 				// TODO:iv_zan 数量+1;
 				int zan_count = list.get(position).getZan_count();
 				if (isFocus == 1) {
@@ -197,7 +203,7 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 				}
 			}
 		});
-		//
+
 		// ((View) mHolder.tv_conversation.getParent()).setOnClickListener(new
 		// OnClickListener() {
 		// @Override
@@ -213,6 +219,14 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 		// }
 		// }
 		// });
+		mHolder.iv_share.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showShare(position);
+			}
+		});
+
 	}
 
 	class MyViewHolder extends RecyclerView.ViewHolder {
@@ -239,6 +253,8 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 			super(itemView);
 			view = itemView;
 
+			iv_share = (ImageView) itemView.findViewById(R.id.item_share_img);
+
 			content = (TextView) itemView.findViewById(R.id.item_content);
 			img1 = (ImageView) itemView.findViewById(R.id.item_img1);
 			img2 = (ImageView) itemView.findViewById(R.id.item_img2);
@@ -263,4 +279,38 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 	public interface OnItemClickListener {
 		public void onItemClick(View v, int position);
 	}
+
+	/**
+	 * 显示分享功能
+	 */
+	private void showShare(int position) {
+		ShareSDK.initSDK(MyApplication.getContext());
+		OnekeyShare oks = new OnekeyShare();
+		// 关闭sso授权
+		oks.disableSSOWhenAuthorize();
+
+		// 分享时Notification的图标和文字 2.5.9以后的版本不调用此方法
+		// oks.setNotification(R.drawable.ic_launcher,
+		// getString(R.string.app_name));
+		// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+		oks.setTitle("【V创】分享：");
+		// titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+		oks.setTitleUrl("http://139.129.22.46:8080/vchuang_service/GetActivityServlet");
+		// text是分享文本，所有平台都需要这个字段
+		oks.setText(list.get(position).getContent());
+		// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+		// oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+		// url仅在微信（包括好友和朋友圈）中使用
+		oks.setUrl("http://139.129.22.46:8080/vchuang_service/GetActivityServlet");
+		// comment是我对这条分享的评论，仅在人人网和QQ空间使用
+		oks.setComment(" ");
+		// site是分享此内容的网站名称，仅在QQ空间使用
+		oks.setSite("V创");
+		// siteUrl是分享此内容的网站地址，仅在QQ空间使用
+		oks.setSiteUrl("http://139.129.22.46:8080/vchuang_service/GetActivityServlet");
+
+		// 启动分享GUI
+		oks.show(MyApplication.getContext());
+	}
+
 }
