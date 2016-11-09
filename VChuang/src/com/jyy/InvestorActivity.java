@@ -33,6 +33,7 @@ public class InvestorActivity extends Activity {
 
 	private Context mContext;
 	private List<InvestorBean> investorList;
+	private InvestorAdapter investorAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,8 @@ public class InvestorActivity extends Activity {
 		investorList = new ArrayList<InvestorBean>();
 
 		ListView lv = (ListView) findViewById(R.id.lv_investor);
-		lv.setAdapter(new InvestorAdapter(mContext, investorList));
+		investorAdapter = new InvestorAdapter(mContext, investorList);
+		lv.setAdapter(investorAdapter);
 
 		// 给返回按钮设置点击事件
 		ImageButton imgbtn_back = (ImageButton) findViewById(R.id.imgbtn_back_investor);
@@ -68,11 +70,12 @@ public class InvestorActivity extends Activity {
 		});
 
 		// 初始化investorList数据
-		for (int i = 0; i < 10; i++) {
+		getData();
+		/*for (int i = 0; i < 10; i++) {
 			InvestorBean ib = new InvestorBean(i, "汪涵", "投资经理，中银投资浙商产业基金", 113, "", "");
 			investorList.add(ib);
 
-		}
+		}*/
 
 		// 给listview条目设置点击事件
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -86,6 +89,7 @@ public class InvestorActivity extends Activity {
 	}
 
 	private void getData() {
+		investorList = new ArrayList<InvestorBean>();
 		StringRequest stringRequest = new StringRequest(URLConfig.PATH + URLConfig.URL_GetInvestor,
 				new Response.Listener<String>() {
 					@Override
@@ -95,9 +99,8 @@ public class InvestorActivity extends Activity {
 								new TypeToken<DataPackage<InvestorBean>>() {
 								}.getType());
 						List<InvestorBean> list = data.datas; // 获取到的数据
-
-						// TODO:刷新界面
-						// flushList();// 刷新界面List
+						investorList = list;
+						flushList();// 刷新界面List
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -106,5 +109,11 @@ public class InvestorActivity extends Activity {
 					}
 				});
 		VolleySingleton.getVolleySingleton(getApplicationContext()).addToRequestQueue(stringRequest);
+	}
+	private void flushList() {
+		Log.i("jyy", "刷新界面");
+
+		investorAdapter.setList(investorList);
+		investorAdapter.notifyDataSetChanged();
 	}
 }
