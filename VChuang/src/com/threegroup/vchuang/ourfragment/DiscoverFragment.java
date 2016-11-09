@@ -39,11 +39,12 @@ import android.widget.Toast;
 public class DiscoverFragment extends Fragment {
 	private View view;
 	private ListView lv_activity;
-	private ArrayList<ActivityBean> activityBeanList;
+	private List<ActivityBean> activityBeanList;
 	private View header;
 	private Context mContext;
 	private ViewPager viewPager;
 	private View lunbotu;
+	private ActiveAdapter activeAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +58,8 @@ public class DiscoverFragment extends Fragment {
 		initViews();
 
 		// Modle数据
-		initData();
+		//initData();
+		getData();
 
 		// Controller控制器
 		initAdapter();
@@ -120,7 +122,7 @@ public class DiscoverFragment extends Fragment {
 	}
 
 	private void getData() {
-
+		activityBeanList = new ArrayList<ActivityBean>();
 		StringRequest stringRequest = new StringRequest(URLConfig.PATH + URLConfig.URL_GetActive,
 				new Response.Listener<String>() {
 					@Override
@@ -130,9 +132,12 @@ public class DiscoverFragment extends Fragment {
 								new TypeToken<DataPackage<ActivityBean>>() {
 								}.getType());
 						List<ActivityBean> list = data.datas; // 获取到的数据
+						activityBeanList = list;
 
-						// TODO:刷新界面
-						// flushList();// 刷新界面List
+						Log.i("jyy", "############  "+list.size());
+						System.out.println("###########");
+						
+						 flushList();// 刷新界面List
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -143,6 +148,13 @@ public class DiscoverFragment extends Fragment {
 		VolleySingleton.getVolleySingleton(getContext()).addToRequestQueue(stringRequest);
 	}
 
+	private void flushList() {
+		Log.i("jyy", "刷新界面");
+
+		activeAdapter.setList(activityBeanList);
+		activeAdapter.notifyDataSetChanged();
+	}
+
 	public void initAdapter() {
 
 		/**
@@ -150,7 +162,9 @@ public class DiscoverFragment extends Fragment {
 		 */
 		lv_activity.addHeaderView(lunbotu);
 		lv_activity.addHeaderView(header);
-		lv_activity.setAdapter(new ActiveAdapter(mContext, activityBeanList));
+		
+		activeAdapter = new ActiveAdapter(mContext, activityBeanList);
+		lv_activity.setAdapter(activeAdapter);
 
 	}
 

@@ -33,7 +33,8 @@ import android.widget.Toast;
 public class ProjectActivity extends Activity {
 
 	private Context mContext;
-	private ArrayList<ProjectBean> projectList;
+	private List<ProjectBean> projectList;
+	private ProjectAdapter projectAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,8 @@ public class ProjectActivity extends Activity {
 		projectList = new ArrayList<ProjectBean>();
 
 		ListView lv = (ListView) findViewById(R.id.lv_project);
-		lv.setAdapter(new ProjectAdapter(mContext, projectList));
+		projectAdapter = new ProjectAdapter(mContext, projectList);
+		lv.setAdapter(projectAdapter);
 
 		// 给返回按钮设置点击事件
 		ImageButton imgbtn = (ImageButton) findViewById(R.id.imgbtn_back_project);
@@ -70,10 +72,11 @@ public class ProjectActivity extends Activity {
 		});
 
 		// 初始化projectList数据
-		for (int i = 0; i < 10; i++) {
+		getData();
+		/*for (int i = 0; i < 10; i++) {
 			ProjectBean pb = new ProjectBean(i, "童漫秀", "儿童动漫微电影第一平台", "北京", 6, "", "");
 			projectList.add(pb);
-		}
+		}*/
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -85,6 +88,7 @@ public class ProjectActivity extends Activity {
 	}
 
 	private void getData() {
+		projectList = new ArrayList<ProjectBean>();
 		StringRequest stringRequest = new StringRequest(URLConfig.PATH + URLConfig.URL_GetProject,
 				new Response.Listener<String>() {
 					@Override
@@ -94,9 +98,8 @@ public class ProjectActivity extends Activity {
 								new TypeToken<DataPackage<ProjectBean>>() {
 								}.getType());
 						List<ProjectBean> list = data.datas; // 获取到的数据
-
-						// TODO:刷新界面
-						// flushList();// 刷新界面List
+						projectList = list;
+						flushList();// 刷新界面List
 					}
 				}, new Response.ErrorListener() {
 					@Override
@@ -105,5 +108,11 @@ public class ProjectActivity extends Activity {
 					}
 				});
 		VolleySingleton.getVolleySingleton(getApplicationContext()).addToRequestQueue(stringRequest);
+	}
+	private void flushList() {
+		Log.i("jyy", "刷新界面");
+
+		projectAdapter.setList(projectList);
+		projectAdapter.notifyDataSetChanged();
 	}
 }
