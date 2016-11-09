@@ -52,21 +52,33 @@ public class MyBehavior3 extends CoordinatorLayout.Behavior {
 		// 分发机智
 	}
 
+	/**
+	 * 显示
+	 * 
+	 * @param child
+	 * @param dy
+	 */
 	private void animatIn(View child, int dy) {
 		ViewCompat.animate(child).translationY(0).start();
 
 		View parent = (View) child.getParent();
 		View rv = parent.findViewById(R.id.rv);
-		ViewCompat.animate(rv).translationY(child.getHeight()).start();
+		ViewCompat.animate(rv).translationY(0).start();
 		tabAnimat(parent, 0);
 	}
 
+	/**
+	 * 隐藏
+	 * 
+	 * @param child
+	 * @param dy
+	 */
 	private void animatOut(View child, int dy) {
 		ViewCompat.animate(child).translationY(-child.getHeight() * 2).start();
 		// ViewCompat.animate(child).alpha(100 - dy).start(); // 消失
 		View parent = (View) child.getParent();
 		View rv = parent.findViewById(R.id.rv);
-		ViewCompat.animate(rv).translationY(0).start();
+		ViewCompat.animate(rv).translationY(-child.getHeight()).start();
 
 		tabAnimat(parent, child.getHeight());
 	}

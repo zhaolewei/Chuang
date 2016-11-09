@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 import cn.sharesdk.framework.ShareSDK;
@@ -27,6 +26,8 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  */
 public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 
+	private static final int TYPE_HEADER = 0;
+	private static final int TYPE_ITEM = 1;
 	private List<VQuanBean> list;
 	private Context context;
 
@@ -46,7 +47,10 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+		if (viewType == TYPE_HEADER) {
+			View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_hearder, parent, false);
+			return new MyViewHolder(view, 0);
+		}
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
 		MyViewHolder mHolder = new MyViewHolder(view);
 
@@ -55,6 +59,10 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+		if (position == 0) {
+			return;
+		}
+		position = position - 1;
 		final MyViewHolder mHolder = (MyViewHolder) holder;
 		VQuanBean data = list.get(position);
 		// 填充数据
@@ -63,11 +71,10 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 
 		Log.i("zlw", "data.getContent():" + data.getContent());
 		mHolder.content.setText("  " + data.getContent());
+
 		// 加载图片
 		String imgs = data.getImgs_url();
 		if (!TextUtils.isEmpty(imgs)) {
-			// imgs =
-			// "http://photocdn.sohu.com/20150626/mp20309286_1435316835474_4.jpeg;http://img03.3dmgame.com/uploads/allimg/150626/296_150626171747_1_lit.jpg";
 			String images[] = imgs.split(";");
 			switch (images.length) {
 			case 3:
@@ -101,17 +108,16 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 			mHolder.img0.setVisibility(View.GONE);
 		}
 
-		// 赞
-		int isFouse = (int) mHolder.tv_zan.getTag();
-		// if (isFouse == 1) {
-		// mHolder.iv_zan.setImageResource(R.drawable.feed_zan_normal);
-		// } else {
-		// mHolder.iv_zan.setImageResource(R.drawable.feed_zan_pressed);
-		// }
-
 		// 绑定事件
 		bindEvent(mHolder, position);
 
+	}
+
+	@Override
+	public int getItemViewType(int position) {
+		if (position == 0)
+			return TYPE_HEADER;
+		return TYPE_ITEM;
 	}
 
 	private void loadImage(int index, String[] images, MyViewHolder mHolder) {
@@ -204,21 +210,6 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 			}
 		});
 
-		// ((View) mHolder.tv_conversation.getParent()).setOnClickListener(new
-		// OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// int isFocus = (int) mHolder.tv_conversation.getTag();
-		// Log.i("zlw", "" + isFocus);
-		// if (isFocus == 1) {
-		// mHolder.iv_conversation.setImageResource(R.drawable.tabs_conversation_pressed);
-		// mHolder.tv_conversation.setTag(0);
-		// } else {
-		// mHolder.iv_conversation.setImageResource(R.drawable.tabs_conversation_normal);
-		// mHolder.tv_conversation.setTag(1);
-		// }
-		// }
-		// });
 		mHolder.iv_share.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -248,6 +239,10 @@ public class VQuanRecycleViewAdapter extends RecyclerView.Adapter {
 
 		public TextView tv_zan;
 		public TextView tv_conversation;
+
+		public MyViewHolder(View itemView, int position) {
+			super(itemView);
+		}
 
 		public MyViewHolder(View itemView) {
 			super(itemView);

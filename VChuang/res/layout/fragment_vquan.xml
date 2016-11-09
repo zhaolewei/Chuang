@@ -7,7 +7,9 @@
     <com.zlw.pullloadmorerecyclerview.PullLoadMoreRecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
