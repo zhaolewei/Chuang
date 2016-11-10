@@ -30,10 +30,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DiscoverFragment extends Fragment {
@@ -42,9 +46,9 @@ public class DiscoverFragment extends Fragment {
 	private List<ActivityBean> activityBeanList;
 	private View header;
 	private Context mContext;
-	private ViewPager viewPager;
 	private View lunbotu;
 	private ActiveAdapter activeAdapter;
+	private View ll_float;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,14 +71,32 @@ public class DiscoverFragment extends Fragment {
 		/**
 		 * 设置活动listview条目的点击事件
 		 */
-		lv_activity.setOnItemClickListener(new OnItemClickListener() {
+		/*lv_activity.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
 				Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
 			}
-		});
+		});*/
 
+		lv_activity.setOnScrollListener(new OnScrollListener() {
+			
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				
+			}
+			
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				if (firstVisibleItem >= 2) {  
+					ll_float.setVisibility(View.VISIBLE);  
+	                } else {  
+	                	ll_float.setVisibility(View.GONE);  
+	                }  
+			}
+		});
+		
 		return view;
 	}
 
@@ -87,6 +109,10 @@ public class DiscoverFragment extends Fragment {
 
 		header = View.inflate(getActivity(), R.layout.discover_header, null);
 
+		ll_float = view.findViewById(R.id.ll_float);
+		
+		
+		
 		/**
 		 * 项目库按钮，投资人按钮
 		 */

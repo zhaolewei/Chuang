@@ -4,17 +4,32 @@
     android:layout_height="match_parent"
     android:padding="5dp" >
 
-    
+    <LinearLayout
+        android:id="@+id/ll_float"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/rl_line"
+        android:background="#EFEFEF"
+        android:visibility="gone" 
+        android:orientation="horizontal">
 
-    
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:text="同城活动" 
+            android:background="#FFFFFF"/>
 
+        
+    </LinearLayout>
 
-    <ListView 
+    <ListView
         android:id="@+id/lv_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EFEFEF"
-        android:layout_below="@id/rl_title_activity"
-        android:layout_marginBottom="50dp"/>
+        android:layout_below="@id/ll_float"
+        android:layout_marginBottom="50dp"
+        android:background="#EFEFEF" />
+    <!-- android:layout_below="@id/rl_title_activity" -->
 
 </RelativeLayout>
