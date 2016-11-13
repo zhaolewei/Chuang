@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="90dp"
+            android:gravity="center"
+            android:text="我的项目"
+            android:textSize="30px" />
+
+        <Button
+            android:id="@+id/new_project"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:text="+ 创建新项目"
+            android:textColor="@drawable/SkyBlue"
+            android:textSize="20px"
+            android:typeface="monospace"
+            android:onClick="createProject" />
+    </LinearLayout>
+    
+    <ImageView 
+        android:id="@+id/nothing"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/empty_empty"
+        android:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/myprojectlistView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1" >
+    </ListView>
+    
+    
+
+</RelativeLayout>

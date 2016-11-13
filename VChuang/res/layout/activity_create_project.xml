@@ -1,0 +1,208 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="创建项目"
+        android:textSize="30px" />
+    
+    <LinearLayout 
+        android:id="@+id/linear1"
+        android:layout_width="fill_parent"
+        android:layout_height="140dp" 
+        android:orientation="horizontal">
+        
+         <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp" 
+            android:layout_weight="0.6">
+        
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/editname"
+            android:layout_alignParentLeft="true"
+            android:text="项目名称" />
+              
+        <EditText
+            android:id="@+id/editname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/name" ></EditText>
+        
+
+
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@+id/editname"
+            android:text="项目网址" />
+        
+        <EditText 
+            android:id="@+id/editurl"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/url"
+            android:layout_alignBaseline="@+id/url"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            />
+
+        <TextView
+            android:id="@+id/introduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/url"
+            android:layout_marginTop="21dp"
+            android:text="简        介" />
+        
+        <EditText 
+            android:id="@+id/editintroduction"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/introduction"
+            android:layout_alignBaseline="@+id/introduction"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            />
+
+         </RelativeLayout>
+    
+         <ImageView 
+             android:id="@+id/image"
+             android:layout_weight="0.4"
+             android:layout_width="80dp"
+             android:layout_height="100dp"
+             android:layout_gravity="center"
+             android:src="@drawable/ic_launcher"/>
+        
+    </LinearLayout>
+
+   
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+        
+        <LinearLayout 
+            android:id="@+id/linearstage"
+            android:layout_weight="0.3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:id="@+id/stage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="阶段"
+                />
+            
+            <EditText 
+                android:id="@+id/editstage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:id="@+id/lineararea"
+            android:layout_weight="0.3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:id="@+id/area"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="领域"
+                />
+            
+            <EditText 
+                android:id="@+id/editarea"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:id="@+id/linearcity"
+            android:layout_weight="0.3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:id="@+id/city"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="所在城市"
+                />
+            
+            <EditText 
+                android:id="@+id/editcity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                />
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/linear3"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细描述" />
+        
+        <EditText 
+            android:id="@+id/editdescription"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            />
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="创建" />
+
+</LinearLayout>

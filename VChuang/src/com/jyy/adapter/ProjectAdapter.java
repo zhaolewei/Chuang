@@ -15,7 +15,10 @@ import com.zlw.mymodel.base.MyApplication;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,7 +58,7 @@ public class ProjectAdapter extends BaseAdapter {
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder viewHolder;
+		final ViewHolder viewHolder;
 		if(convertView == null){
 			viewHolder = new ViewHolder();
 			convertView =  View.inflate(context, R.layout.project_item, null);
@@ -65,6 +68,7 @@ public class ProjectAdapter extends BaseAdapter {
 			viewHolder. tv_support = (TextView) convertView.findViewById(R.id.tv_support_project_item);
 			viewHolder. img_logo = (com.zlw.view.CircleImageView) convertView
 					.findViewById(R.id.img_logo_project_item);
+			viewHolder. iv_zan = (ImageView) convertView.findViewById(R.id.iv_zan_project);
 			convertView.setTag(viewHolder);
 		}else{
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -75,7 +79,24 @@ public class ProjectAdapter extends BaseAdapter {
 		viewHolder.tv_introduce.setText(pb.getIntroduce());
 		viewHolder.tv_location.setText(pb.getLocation());
 		viewHolder.tv_support.setText(pb.getZan_count() + "");
-		
+		//设置iv_zan的点击事件
+		viewHolder.iv_zan.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				//设置点赞的放大动画
+				ScaleAnimation sa = new ScaleAnimation(1.0f, 2.0f, 1.0f, 2.0f,
+						Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				sa.setDuration(300);
+				sa.setRepeatCount(1);
+				sa.setRepeatMode(Animation.REVERSE);
+				v.startAnimation(sa);
+				//
+				viewHolder.tv_support.setText(Integer.parseInt((String) viewHolder.tv_support.getText())+1+"");
+				
+			}
+		});
 		
 		//  通过网络地址设置图片
 		Glide.with(MyApplication.getContext()).load(pb.getLogo_url()).diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -83,25 +104,7 @@ public class ProjectAdapter extends BaseAdapter {
 		//viewHolder.img_logo.setImageResource(R.drawable.test_user_photo);
 		
 		return convertView;
-		/*View v = convertView == null ? View.inflate(context, R.layout.project_item, null) : convertView;
-		TextView tv_title = (TextView) v.findViewById(R.id.tv_title_project_item);
-		TextView tv_introduce = (TextView) v.findViewById(R.id.tv_introduce_project_item);
-		TextView tv_location = (TextView) v.findViewById(R.id.tv_location_project_item);
-		TextView tv_support = (TextView) v.findViewById(R.id.tv_support_project_item);
-		com.zlw.view.CircleImageView img_logo = (com.zlw.view.CircleImageView) v
-				.findViewById(R.id.img_logo_project_item);
-
-		ProjectBean pb = projectList.get(position);
-		tv_title.setText(pb.getTitle());
-		tv_introduce.setText(pb.getIntroduce());
-		tv_location.setText(pb.getLocation());
-		tv_support.setText(pb.getZan_count() + "");
-		img_logo.setImageResource(R.drawable.test_user_photo);
-
-		// 设置图片的标记，在更新ui时判断下url是否一致，防止图片重复
-		img_logo.setTag(pb.getLogo_url());
-
-		return v;*/
+		
 	}
 	private final class ViewHolder{
 		TextView tv_title ;
@@ -109,5 +112,6 @@ public class ProjectAdapter extends BaseAdapter {
 		TextView tv_location ;
 		TextView tv_support;
 		com.zlw.view.CircleImageView img_logo ;
+		ImageView iv_zan;
 	}
 }

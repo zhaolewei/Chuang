@@ -37,7 +37,22 @@
             android:name="com.jyy.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
-
+		<activity
+            android:name="com.wzy.MyProjectActivity"
+            android:label="@string/title_activity_my_project" >
+        </activity>
+        <activity
+            android:name="com.wzy.MyInvestActivity"
+            android:label="@string/title_activity_my_invest" >
+        </activity>
+        <activity
+            android:name="com.wzy.CreateProjectActivity"
+            android:label="@string/title_activity_create_project" >
+        </activity>
+        <activity
+            android:name="com.wzy.TeamActivity"
+            android:label="@string/title_activity_team" >
+        </activity>
         <!-- MOB-SDK -->
 
         <activity

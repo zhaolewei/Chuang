@@ -159,7 +159,7 @@ public class ActiveAdapter extends BaseAdapter {
 				set.setTarget(viewHolder.rl_item);
 				set.start();
 				viewHolder.tv_activity_content.setVisibility(View.GONE);
-
+				
 			}
 		});
 

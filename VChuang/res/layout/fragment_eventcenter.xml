@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#B4CDE6" >
+     >
     
 
-    <TextView 
+    <Button
+        android:id="@+id/MyProject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="事务中心"/>
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="27dp"   
+        android:text="我的项目" />
+
+
+    <Button
+        android:id="@+id/MyInvest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="49dp"
+        android:text="我的投资" />
     
-</LinearLayout>
+</RelativeLayout>

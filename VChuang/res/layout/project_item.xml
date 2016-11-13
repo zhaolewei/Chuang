@@ -41,8 +41,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" >
+            android:layout_height="40dp"
+            android:layout_gravity="center" 
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tv_location_project_item"
@@ -51,8 +52,9 @@
                 android:layout_alignParentLeft="true"
                 android:text="北京"
                 android:textColor="#666666"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
+            
             <TextView
                 android:id="@+id/tv_support_project_item"
                 android:layout_width="wrap_content"
@@ -61,7 +63,14 @@
                 android:layout_marginRight="10dp"
                 android:text="5"
                 android:textColor="#666666"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
+            <ImageView 
+                android:id="@+id/iv_zan_project"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/zan_project"/>
         </RelativeLayout>
     </LinearLayout>
 

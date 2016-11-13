@@ -9,5 +9,8 @@
     <string name="title_activity_investor">InvestorActivity</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_lunbotu">LunbotuActivity</string>
-
+	<string name="title_activity_my_project">MyProjectActivity</string>
+    <string name="title_activity_my_invest">MyInvestActivity</string>
+    <string name="title_activity_create_project">CreateProjectActivity</string>
+    <string name="title_activity_team">TeamActivity</string>
 </resources>

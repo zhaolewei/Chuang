@@ -17,6 +17,8 @@ import com.zlw.utils.JsonTools;
 import com.zlw.utils.VolleySingleton;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -81,7 +83,10 @@ public class InvestorActivity extends Activity {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+				AlertDialog.Builder bulider = new Builder(mContext);
+				bulider.setMessage(investorList.get(position).getInformation());
+				bulider.show();
 			}
 		});
 
