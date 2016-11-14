@@ -1,0 +1,264 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+   
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#09ffcc" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="信息编辑"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+          
+            <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="用户名 :"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_username"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="密码 :"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_password"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="确认密码 :"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_admitpwd"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	             />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="年龄 :"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_age"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="性别:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_sex"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:id="@+id/tv_regist_type"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="类    型 :"
+	            android:textSize="25dp" />
+	
+	        <Spinner
+	            android:id="@+id/spinner03"
+	            android:layout_width="300dip"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="公司:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_company"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="手机话:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_phonenum"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="email:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_email"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="工作:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_job"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="城市:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_city"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="10dp" >
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="地址:"
+	            android:textSize="25dp" />
+	
+	        <EditText
+	            android:id="@+id/et_c_address"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_margin="10dp" >
+	
+	        <Button
+	            android:id="@+id/bt_c"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:text="提交"
+	            android:onClick="cButton" />
+	        
+	        <Button
+	            android:id="@+id/bt_d"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:text="删除"
+	            android:onClick="dButton" />
+	    </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>    
+   
+
+</LinearLayout>

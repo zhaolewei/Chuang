@@ -1,14 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#C7EDCC" >
+    android:background="@drawable/p6"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#09ffcc" >
+
+        <ImageView
+            android:id="@+id/iv_addfriends"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/addfriends" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="50dp"
+            android:gravity="center"
+            android:text="个人中心"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:onClick="setting"
+            android:src="@drawable/caozuo" />
+
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" >
+
+        <com.zlw.view.CircleImageView
+            android:id="@+id/photoimg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/p1" />
+
+    </LinearLayout>
+
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp">
+        <ImageView 
+            android:id="@+id/iv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myxinxi"
+            />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp"
+        >
+        <ImageView 
+            android:id="@+id/iv_shoucang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myshoucang"
+            android:onClick="shoucangListener"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        >
+        <ImageView 
+            android:id="@+id/iv_guanzhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myguanzhu"
+            android:onClick="guanzhuListener"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+       android:layout_gravity="center_horizontal"
+        android:layout_height="60dp"
+        >
+        <ImageView 
+            android:id="@+id/iv_dynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mydynamic"
+            android:onClick="dynamicListener"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp"
+        >
+        <ImageView 
+            android:id="@+id/iv_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myactivity"
+            android:onClick="activityListener"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp"
+        >
+        <ImageView 
+            android:id="@+id/iv_discuss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mydiscuss"
+            android:onClick="discussListener"/>
+    </LinearLayout>
+</LinearLayout>
     
 
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="个人中心"/>
-    
-</LinearLayout>
